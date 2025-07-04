@@ -14,3 +14,7 @@ A collection of useful R utility scripts for common data processing and file man
 1. Clone this repository:
 ```bash
 git clone https://github.com/yourusername/r-misc-tools.git
+
+2. Install required R packages:
+r
+install.packages(c("pdftools", "tidyr"))
