@@ -15,7 +15,7 @@ library(tidyr)
 # Function to combine PDFs in a directory
 combine_pdfs <- function(input_dir = ".", output_filename = "merged.pdf") {
 
-  # Set working directory to input directory
+  # Set working directory to input directory usually from path created with getwd()
   setwd(input_dir)
 
   # Get all PDF files in the directory (sorted alphanumerically)
