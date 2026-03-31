@@ -12,9 +12,6 @@
 library(pdftools)
 library(tidyr)
 
-# Function to combine PDFs in a directory
-combine_pdfs <- function(input_dir = ".", output_filename = "merged.pdf") {
-
   # Set working directory to input directory usually from path created with getwd()
   setwd(input_dir)
 
@@ -36,11 +33,10 @@ combine_pdfs <- function(input_dir = ".", output_filename = "merged.pdf") {
   pdf_merged <- file.path(input_dir, output_filename)
 
   # Combine the PDFs
-  pdf_combine(all_pdf, output = pdf_merged)
+  pdf_combine(all_pdf, output = pdf_merged.pdf)
 
   cat("PDFs successfully combined into:", pdf_merged, "\n")
   return(pdf_merged)
-}
 
 # =============================================================================
 # ████  HOW TO USE — SET YOUR PLACEHOLDERS BELOW  ████
