@@ -70,3 +70,47 @@ combine_pdfs(
 #   [ ] output_filename ends in .pdf
 #   [ ] The output filename is NOT the same as any existing file you want to keep
 # =============================================================================
+
+# =============================================================================
+# PDF Page Removal Tool
+# Removes specified pages from a PDF file
+# =============================================================================
+library(pdftools)
+
+remove_pages <- function(input_pdf, pages_to_remove, output_pdf) {
+  
+  # Get total number of pages in the PDF
+  total_pages <- pdf_info(input_pdf)$pages
+  
+  # Validate requested pages exist
+  invalid_pages <- pages_to_remove[!pages_to_remove %in% seq_len(total_pages)]
+  if (length(invalid_pages) > 0) {
+    stop("These pages don't exist in the PDF: ", paste(invalid_pages, collapse = ", "),
+         "\nThe PDF has ", total_pages, " pages.")
+  }
+  
+  # Work out which pages to KEEP
+  pages_to_keep <- setdiff(seq_len(total_pages), pages_to_remove)
+  
+  if (length(pages_to_keep) == 0) {
+    stop("Cannot remove all pages — the output PDF would be empty.")
+  }
+  
+  # Write the subset to the output file
+  pdf_subset(input_pdf, pages = pages_to_keep, output = output_pdf)
+  
+  cat("Removed page(s)", paste(pages_to_remove, collapse = ", "),
+      "-- output has", length(pages_to_keep), "pages\n")
+  cat("Saved to:", output_pdf, "\n")
+  
+  return(output_pdf)
+}
+
+# =============================================================================
+# HOW TO USE
+# =============================================================================
+remove_pages(
+  input_pdf = "PATH/TO/YOUR/FILE.pdf",     # <-- CHANGE THIS
+  pages_to_remove = c(2, 5),               # <-- CHANGE THIS (page numbers to drop)
+  output_pdf = "PATH/TO/OUTPUT.pdf"        # <-- CHANGE THIS
+)
