@@ -6,5 +6,6 @@ A collection of useful R utility scripts for common data processing and file man
 
 ### PDF Tools
 - **PDF Combining**: Merge multiple PDF files into a single document
+- **PDF page removal**: Remove multiple PDF pages from a single document
 - Easy-to-use function with customizable input directory and output filename
 - Automatic PDF detection and validation
